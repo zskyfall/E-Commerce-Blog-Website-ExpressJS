@@ -16,3 +16,16 @@ Website bán hàng tích hợp làm blog viết bằng ExpressJS
 <img src="http://i.imgur.com/wrO6pry.png">
 <h3>Trang show Sản Phẩm/Bài Viết</h3>
 <img src="http://i.imgur.com/jOTI2mY.png">
+
+
+*** Website vẫn đang trong giai đoạn phát triển. Các chức năng đã hoàn thiện:
+-Đăng Ký/Đăng Nhập
+-Thêm Danh Mục/Sản Phẩm Mới
+-Thêm Danh Mục/Bài Viết Mới
+
+***Các chức năng đang hoàn thiện:
+-SEO Tools
+-Rich Snippet Generator
+-....
+
+***Theme sử dụng: Materialized
