@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Duyệt Files</title>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <script>
+        // Helper function to get parameters from the query string.
+        function getUrlParam( paramName ) {
+            var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+            var match = window.location.search.match( reParam );
+
+            return ( match && match.length > 1 ) ? match[1] : null;
+        }
+        // Simulate user action of selecting a file to be returned to CKEditor.
+        function returnFileUrl(fileUrl) {
+
+            var funcNum = getUrlParam( 'CKEditorFuncNum' );
+            
+            window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+            window.close();
+        }
+    </script>
+</head>
+<body>
+    <% for(var i=0;i < images_list.length;i++){%>
+             <img src="/uploads/images/<%= images_list[i] %>" width="200px" height="200px" class="selected_image"/>
+    <%}%>
+    <button onclick="returnFileUrl()">Select File</button>
+</body>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+            $('.selected_image').click(function(){
+                  returnFileUrl($(this).attr('src'));  
+            });
+    });
+
+</script>
+
+</html>

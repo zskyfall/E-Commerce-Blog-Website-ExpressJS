@@ -1,0 +1,12 @@
+[
+				    {
+				        "image": "C:/Users/SOW 2/Desktop/WebX/public/uploads/images/linh sugar 2.jpg",
+				        "thumb": "C:/Users/SOW 2/Desktop/WebX/public/uploads/images/linh sugar 2.jpg",
+				        "folder": "Small"
+				    },
+				    {
+				        "image": __dirname+"/uploads/images/linh sugar 2.jpg",
+				        "thumb": __dirname+"/uploads/images/linh sugar 2.jpg",
+				        "folder": "Small"
+				    }
+]

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="My website ">
+  <meta name="keywords" content="blank page,trang trống">
+  <title>Danh Sách Sản Phẩm</title>
+
+
+  <!-- CORE CSS-->
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/materializecss-icon.css" type="text/css" rel="stylesheet">
+  <link href="css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->    
+  <link href="css/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+</head>
+
+<body class="loaded">
+  <!-- Start Page Loading -->
+  <div id="loader-wrapper">
+      <div id="loader"></div>        
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+  </div>
+  <!-- End Page Loading -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START HEADER -->
+  <header id="header" class="page-topbar">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="navbar-color">
+                <div class="nav-wrapper">
+                    <ul class="left">                      
+                      <li><h1 class="logo-wrapper"><a href="/admin" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Thang</span></h1></li>
+                    </ul>
+                    <div class="header-search-wrapper hide-on-med-and-down">
+                        <i class="mdi-action-search"></i>
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Tìm Kiếm">
+                    </div>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="translation-dropdown"><img src="images/United-States.png" alt="USA"></a><ul id="translation-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1661px; opacity: 1; display: none;">
+                      <li>
+                        <a href="/"><img src="images/United-States.png" alt="English">  <span class="language-select">English</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/France.png" alt="French">  <span class="language-select">French</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/China.png" alt="Chinese">  <span class="language-select">Chinese</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/Germany.png" alt="German">  <span class="language-select">German</span></a>
+                      </li>
+                      
+                    </ul>
+                        </li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications"><small class="notification-badge">5</small></i>
+                        
+                        </a><ul id="notifications-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1609px; opacity: 1; display: none;">
+                      <li>
+                        <h5>THÔNG BÁO <span class="new badge">5</span></h5>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="/"><i class="mdi-action-add-shopping-cart"></i> A new order has been placed!</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 hours ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-stars"></i> Completed the task</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">3 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-settings"></i> Settings updated</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">4 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-editor-insert-invitation"></i> Director meeting started</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">6 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-trending-up"></i> Generate monthly report</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">1 week ago</time>
+                      </li>
+                    </ul>
+                        </li>                        
+                        <li><a href="/" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat"></i></a>
+                        </li>
+                    </ul>
+                    <!-- translation-button -->
+                    
+                    <!-- notifications-dropdown -->
+                    
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+  </header>
+  <!-- END HEADER -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START MAIN -->
+  <div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+      <!-- START LEFT SIDEBAR NAV-->
+      <aside id="left-sidebar-nav">
+        <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y" style="left: 0px; height: 970px;">
+            <li class="user-details cyan darken-2">
+            <div class="row">
+                <div class="col col s4 m4 l4">
+                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                </div>
+                <div class="col col s8 m8 l8">
+                    
+                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="/" data-activates="profile-dropdown">Thắng<i class="mdi-navigation-arrow-drop-down right"></i></a><ul id="profile-dropdown" class="dropdown-content">
+                        <li><a href="/"><i class="mdi-action-face-unlock"></i> Hồ sơ</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-action-settings"></i> Cài đặt</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-communication-live-help"></i> Trợ giúp</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/"><i class="mdi-action-lock-outline"></i> Xem</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-hardware-keyboard-tab"></i> Đăng Xuất</a>
+                        </li>
+                    </ul>
+                    <p class="user-roal">Administrator</p>
+                </div>
+            </div>
+            </li>
+            <li class="bold"><a href="/" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Trang Chủ</a>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Giao Diện</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/layout/custom">Tùy Chỉnh</a>
+                                </li>
+                                <li><a href="/admin/layout/menu">Menu</a>
+                                </li>
+                                <li><a href="/admin/layout/css">CSS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-insert-drive-file"></i> Trang</a>
+                                <div class="collapsible-body" style="display: block;">
+                                            <ul>
+                                                <li><a href="/admin/pages/all">Tất cả</a>
+                                                </li>
+                                                <li><a href="/admin/pages/add">Thêm Mới</a>
+                                                </li>
+                                            </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                     <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+
+                          <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-mode-edit"></i> Bài Viết</a>
+                              <div class="collapsible-body" style="display: block;">
+                                          <ul>
+                                              <li><a href="/admin/posts/all">Tất cả</a>
+                                              </li>
+                                              <li><a href="/admin/posts/add">Viết Bài Mới</a>
+                                              </li>
+
+                                              <li><a href="/admin/posts/tags">Thêm Thẻ</a>
+                                              </li>
+
+                                          </ul>
+                              </div>
+                          </li>
+                        </ul>
+                    </li>
+
+                <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-image-image"></i> Phương Tiện</a>
+                                <div class="collapsible-body" style="">
+                                            <ul>
+                                                <li><a href="/admin/media/all">Thư Viện</a>
+                                                </li>
+                                                <li><a href="/admin/media/add">Thêm Mới</a>
+                                                </li>
+                                            </ul>
+                                </div>
+                            </li>
+                      </ul>
+                </li>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-shopping-basket"></i>Sản Phẩm</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/products-list">Danh Sách</a>
+                                </li>
+                                <li><a href="/admin/producer">Nhà Sản Xuất</a>
+                                </li>
+                                <li><a href="/admin/category">Danh Mục</a>
+                                </li>
+                                <li><a href="/admin/details">Thuộc Tính</a>
+                                </li>
+                                <li><a href="/admin/currency">Tiền Tệ</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i>Bán Hàng</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/orders">Đơn Hàng</a>
+                                </li>
+                                <li><a href="/admin/ship">Giao Hàng</a>
+                                </li>
+                                <li><a href="/admin/customers">Khách Hàng</a>
+                                </li>
+                                <li><a href="/admin/voucher">Mã Giảm Giá</a>
+                                </li>
+                                <li><a href="/admin/send-mail">Gửi Mail</a>
+                                </li>
+                                <li><a href="/admin/sale">Chạy Khuyến Mại</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan"><i class="mdi-action-store"></i> Cửa Hàng</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+            </li>
+
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>SEO</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/seo-research-oponent">Nghiên Cứu Đối Thủ</a>
+                                </li>
+                               
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+  
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-invert-colors"></i> Thiết Kế</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+                    </li>
+
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-extension"></i>Phần Mở Rộng</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/extensions/installed">Đã Cài</a>
+                                        </li>
+                                        <li><a href="/admin/extensions/new">Cài Mới</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-settings-applications"></i>Hệ Thống</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/system/infos">Thông Tin</a>
+                                        </li>
+                                        <li><a href="/admin/system/setting">Cài Đặt</a>
+                                        </li>
+                                        <li><a href="/admin/system/cache">Cache</a>
+                                        </li>
+                                        <li><a href="/admin/system/warnings">Cảnh Báo</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="bold"><a href="/admin/reports" class="waves-effect waves-cyan"><i class="mdi-device-now-widgets"></i> Báo Cáo
+                    <span class="new badge"></span></a>
+                    </li>
+                   
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan" href="/admin/forms"><i class="mdi-editor-insert-comment"></i> Biểu Mẫu </a>
+                        <div class="collapsible-body" style="">
+                           
+                        </div>
+                    </li>
+                    
+
+                    
+                    
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> Thành Viên</a>
+                        <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/users/all">Tất Cả</a>
+                                        </li>
+                                        <li><a href="/admin/users/add">Thêm Mới</a>
+                                        </li>
+                                        <li><a href="/admin/users/admin">Hồ Sơ Của Bạn</a>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-editor-insert-chart"></i> Biểu Đồ</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="li-hover"><div class="divider"></div></li>
+            <li class="li-hover"><p class="ultra-small margin more-text">Thống Kê Nhanh</p></li>
+            
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-social-people"></i>Khách Hàng Online</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Đăng Nhập: </a>
+                                        </li>
+                                        <li><a href="#">Khách: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-action-credit-card"></i>Số Đơn Hàng</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-editor-attach-money"></i>Doanh Thu</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-social-person-add"></i>Khách Hàng Mới</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-communication-forum"></i>Đánh Giá Trong Ngày</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+                             
+            <li class="li-hover"><div class="divider"></div></li>
+            <li class="li-hover"><p class="ultra-small margin more-text">Biểu Đồ Doanh Thu</p></li>
+            <li class="li-hover">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                           <div class="ct-chart ct-perfect-fourth"></div>  
+                           <br><br/>
+                    </div>
+                </div>
+            </li>
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 910px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 631px;"></div></div></ul>
+        <a href="/" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
+        </aside>
+      <!-- END LEFT SIDEBAR NAV-->
+
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- START CONTENT -->
+      <section id="content">
+        
+        <!--start container-->
+        <div class="container">
+
+          <div class="row">
+                    <div class="col s12 m4 l4">
+                                 
+                           <select id="sortingField0">
+                                            <option>Tác Vụ</option>
+                                            <option>Xóa</option>
+                                           
+                                           
+                                        </select>
+                                        <a class="waves-effect waves-light btn" id="sort0"><i class="mdi-navigation-check right"></i>Áp Dụng</a>
+
+                    </div>
+                    <div class="col s12 m4 l4">
+                         <select id="sortingField">
+                                            <option value="Name">Tên Sản Phẩm</option>
+                                            <option value="Category">Danh Mục</option>
+                                            <option value="Price">Giá Bán</option>
+                                            <option value="Product_code">Mã Sản Phẩm</option>
+                                           
+                          </select>
+                                        <a class="waves-effect waves-light btn" id="sort"><i class="mdi-action-view-list right"></i>Sắp Xếp</a>
+                      
+                    </div>
+
+                    <div class="col s12 m4 l4">
+                         <p><a class="waves-effect waves-light btn modal-trigger light-blue" href="/admin/product?action=add"><i class="mdi-content-add right"></i>Thêm Sản Phẩm</a>
+                         </p>
+                      
+                    </div>
+
+                    
+
+            
+
+          </div>
+
+
+
+
+          <div id="jsGrid"></div>
+
+          <div id="dialog2" title="Image Full Size View">
+              <img id="imagePreview" />
+          </div>
+          
+
+        </div>
+        <!--end container-->
+      </section>
+      <!-- END CONTENT -->
+
+     
+
+    </div>
+    <!-- END WRAPPER -->
+
+  </div>
+  <!-- END MAIN -->
+
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START FOOTER -->
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        <span>Copyright © 2017 <a class="grey-text text-lighten-4" href="">NIMKID</a> All rights reserved.</span>
+        <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">Hữu Thắng</a></span>
+        </div>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--prism
+    <script type="text/javascript" src="js/prism/prism.js"></script>-->
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!-- chartist -->
+    <script type="text/javascript" src="js/chartist.min.js"></script>   
+    <!-- masonry -->
+    <script src="js/masonry.pkgd.min.js"></script>
+    <!-- imagesloaded -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>    
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.min.js"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="js/custom-script.js"></script>
+    <script type="text/javascript" src="js/sweetalert.js"></script>
+
+     <script type="text/javascript">
+      var data = {
+      
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sa', 'Su'],
+       
+        series: [
+          [5, 2, 4, 2, 0,6,15]
+        ]
+      };
+
+
+
+      new Chartist.Line('.ct-chart', data);
+    </script>
+
+    <script type="text/javascript">
+        
+         <% if(result != undefined && result == "ok"){ %> 
+ 
+            swal("Thành Công", "", "success");
+   
+        <%}%>
+
+        <% if(result != undefined && result == "fail"){ %> 
+ 
+            swal("Thất Bại", "Xảy ra lỗi! Thử lại?", "error");
+   
+        <%}%>
+
+    </script>
+
+
+
+    <script>
+
+
+    var products = [
+        
+        <% products.forEach(function(p){%>
+            { "Id": "<%= p._id %>","Check":false,"Name": "<%= p.name %>", "Image": "<%= p.image %>","Product_code":"<%= p.code %>","Price":"<%= p.price %>","Stock":<%= p.amount %>,"Category":"<%= p.category %>"},
+        <%});%>
+
+    ];
+ 
+    var Category = [
+        { Name: "", Id: 0 },
+        <% category.forEach(function(c){%>
+        { Name: "<%= c.name %>", Id: "<%= c.name %>" },
+        <%});%>
+    ];
+
+ 
+    $("#jsGrid").jsGrid({
+        width: "100%",
+        height: "100%",
+ 
+        
+        
+        sorting: true,
+        paging: true,
+        filtering: true,
+        pageSize: 20,
+        pageButtonCount: 5,
+        pageNextText: "Tiếp",
+        pagePrevText: "Trước",
+        pageFirstText: "Đầu",
+        pageLastText: "Cuối",
+        pagerFormat: "Trang: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} / {pageCount}",
+        confirmDeleting: true,
+        editButtonTooltip: "Sửa",                    
+        deleteButtonTooltip: "Xóa",
+        deleteConfirm: "Bạn có chắc muốn Xóa?",
+ 
+        data: products,
+
+        controller: {
+        loadData: function(filter) {
+            return $.grep(products, function(product) {
+                return (!filter.Name || product.Name.indexOf(filter.Name) > -1)
+                && (!filter.Product_code || product.Product_code.indexOf(filter.Product_code) > -1)
+                && (!filter.Stock || product.Stock === filter.Stock)
+                && (!filter.Category || product.Category === filter.Category)
+                && (!filter.Price || product.Price.indexOf(filter.Price) > -1);
+                });
+            },
+            insertItem: function(insertingItem) {
+                var formData = new FormData();
+                formData.append("Name", insertingItem.Name);
+                formData.append("Img[]", insertingItem.Img, insertingItem.Img.name);
+                
+                return $.ajax({
+                    method: "post",
+                    type: "POST",
+                    url: "/YourUrlToAddItemAndSaveImage",
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                });
+            },
+            updateItem: function(item){
+                return $.ajax({
+                    url: "/product/edit",
+                    type: "POST",
+                    data: item,
+                    success: function(rs){
+                       alert(rs);
+                    }
+                });
+            },
+            deleteItem: function(item){
+                return $.ajax({
+                    url: "/admin/product/delete",
+                    type: "POST",
+                    data: item,
+                    success: function(rs){
+                       if(rs == "ok"){
+                            
+                            swal("Thành Công", "", "success");
+                            
+                          }
+                          else{
+                            swal("Thất Bại", "Xảy ra lỗi! Thử lại?", "error");
+                          }
+                    }
+                });
+            }       
+        },
+ 
+        fields: [
+            {
+              name: "Id",css:"hide",itemTemplate: function(value,item){
+                  return $("<p>").attr("class","id").text(value);
+              }
+            },
+            { name: "Check", title: "Chọn", align: "center",
+              itemTemplate: function(value, item) {
+                return $("<input>").attr("type", "checkbox")
+                    .attr("value", "false")
+                    .on("change", function() {
+                      
+                      if($(this).attr("value") == "false"){
+                        $(this).attr("value") = "true";
+                      }
+                      else{
+                        $(this).attr("value") = "false";
+                      }
+                    });
+              }
+            },
+
+            {
+            name: "Image",
+            title: "Ảnh",
+            itemTemplate: function(val, item) {
+                return $("<img>").attr("src", val).css({ height: 50, width: 50 }).on("click", function() {
+                    $("#imagePreview").attr("src", item.Img);
+                    $("#dialog").dialog("open");
+                });
+            },
+            insertTemplate: function() {
+                var insertControl = this.insertControl = $("<input>").prop("type", "file");
+                return insertControl;
+            },
+            insertValue: function() {
+                return this.insertControl[0].files[0]; 
+            },
+            align: "center",
+            width: 120
+            },
+            { 
+              type: "text", name: "Name",align:"center",title:"Tên Sản Phẩm"
+            },
+            {
+              type:"text",name: "Product_code",align:"center",title:"Mã Sản Phẩm"
+            },
+            {
+              type:"number",name:"Stock",sorting:false,
+              align:"center",title:"Kho"
+            },
+            {
+              type: "select", name: "Category", items: Category, valueField: "Id", textField: "Name",title:"Danh Mục"
+            },
+            {
+              type:"text",name:"Price",align:"center",tile:"Giá"
+            },
+
+            { title:"Sửa",
+              width: 50,
+              itemTemplate: function(value, item) { 
+
+                  return $("<input>").attr("class","jsgrid-button jsgrid-edit-button")
+                  .attr("title","Sửa")
+                  .attr("type","button")
+                  .on("click",function(){
+                     var id = $(this).parent().parent().find('p.id').text();
+                     var win = window.open('/admin/product?id='+id+'&action=edit');
+                      if (win) {
+                          win.focus();
+                      } else {
+                         
+                          alert('Xin hãy cho phép mở popup cho trang này!');
+                      }
+
+
+                    return false;
+                  });
+              }
+            },
+            {
+              type: 'control', title: "Xóa",
+              editButton: false
+            }
+
+            ]
+        });
+
+        $("#pager").on("change", function() {
+            var page = parseInt($(this).val(), 10);
+            $("#jsGrid").jsGrid("openPage", page);
+        });
+
+         $('#sortingField').on('change', function() {
+                $(this).attr('value',this.value);
+          });
+
+            $("#sort").click(function() {
+                var field = $("#sortingField").attr('value');
+                $("#jsGrid").jsGrid("sort", field);
+            });
+
+
+    </script>
+
+
+    
+
+<div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div><div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); right: 0px;"></div></body></html>

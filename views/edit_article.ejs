@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="My website ">
+  <meta name="keywords" content="blank page,trang trống">
+  <title>Sửa: <%= article.title %></title>
+
+  <!-- Favicons-->
+  <link rel="icon" href="http://demo.geekslabs.com/materialize/v3.1/images/favicon/favicon-32x32.png" sizes="32x32">
+  <!-- Favicons-->
+  <link rel="apple-touch-icon-precomposed" href="http://demo.geekslabs.com/materialize/v3.1/images/favicon/apple-touch-icon-152x152.png">
+  <!-- For iPhone -->
+  <meta name="msapplication-TileColor" content="#00bcd4">
+  <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+  <!-- For Windows Phone -->
+
+
+  <!-- CORE CSS-->
+  <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/materializecss-icon.css" type="text/css" rel="stylesheet">
+  <link href="css/style.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <!-- Custome CSS-->    
+  <link href="css/custom.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/css/dropify.min.css">
+
+</head>
+
+<body class="loaded">
+  <!-- Start Page Loading -->
+  <div id="loader-wrapper">
+      <div id="loader"></div>        
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+  </div>
+  <!-- End Page Loading -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START HEADER -->
+  <header id="header" class="page-topbar">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="navbar-color">
+                <div class="nav-wrapper">
+                    <ul class="left">                      
+                      <li><h1 class="logo-wrapper"><a href="/admin" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                    </ul>
+                    <div class="header-search-wrapper hide-on-med-and-down">
+                        <i class="mdi-action-search"></i>
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Tìm Kiếm">
+                    </div>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="translation-dropdown"><img src="images/United-States.png" alt="USA"></a><ul id="translation-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1661px; opacity: 1; display: none;">
+                      <li>
+                        <a href="/"><img src="images/United-States.png" alt="English">  <span class="language-select">English</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/France.png" alt="French">  <span class="language-select">French</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/China.png" alt="Chinese">  <span class="language-select">Chinese</span></a>
+                      </li>
+                      <li>
+                        <a href="/"><img src="images/Germany.png" alt="German">  <span class="language-select">German</span></a>
+                      </li>
+                      
+                    </ul>
+                        </li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
+                        </li>
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications"><small class="notification-badge">5</small></i>
+                        
+                        </a><ul id="notifications-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1609px; opacity: 1; display: none;">
+                      <li>
+                        <h5>THÔNG BÁO <span class="new badge">5</span></h5>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="/"><i class="mdi-action-add-shopping-cart"></i> A new order has been placed!</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 hours ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-stars"></i> Completed the task</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">3 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-settings"></i> Settings updated</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">4 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-editor-insert-invitation"></i> Director meeting started</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">6 days ago</time>
+                      </li>
+                      <li>
+                        <a href="/"><i class="mdi-action-trending-up"></i> Generate monthly report</a>
+                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">1 week ago</time>
+                      </li>
+                    </ul>
+                        </li>                        
+                        <li><a href="/" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat"></i></a>
+                        </li>
+                    </ul>
+                    <!-- translation-button -->
+                    
+                    <!-- notifications-dropdown -->
+                    
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+  </header>
+  <!-- END HEADER -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START MAIN -->
+  <div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+      <!-- START LEFT SIDEBAR NAV-->
+      <aside id="left-sidebar-nav">
+        <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y" style="left: 0px; height: 970px;">
+            <li class="user-details cyan darken-2">
+            <div class="row">
+                <div class="col col s4 m4 l4">
+                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                </div>
+                <div class="col col s8 m8 l8">
+                    
+                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="/" data-activates="profile-dropdown">Thắng<i class="mdi-navigation-arrow-drop-down right"></i></a><ul id="profile-dropdown" class="dropdown-content">
+                        <li><a href="/"><i class="mdi-action-face-unlock"></i> Hồ sơ</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-action-settings"></i> Cài đặt</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-communication-live-help"></i> Trợ giúp</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="/"><i class="mdi-action-lock-outline"></i> Xem</a>
+                        </li>
+                        <li><a href="/"><i class="mdi-hardware-keyboard-tab"></i> Đăng Xuất</a>
+                        </li>
+                    </ul>
+                    <p class="user-roal">Administrator</p>
+                </div>
+            </div>
+            </li>
+            <li class="bold"><a href="/" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i> Trang Chủ</a>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-view-carousel"></i> Giao Diện</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/layout/custom">Tùy Chỉnh</a>
+                                </li>
+                                <li><a href="/admin/layout/menu">Menu</a>
+                                </li>
+                                <li><a href="/admin/layout/css">CSS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-insert-drive-file"></i> Trang</a>
+                                <div class="collapsible-body" style="display: block;">
+                                            <ul>
+                                                <li><a href="/admin/pages/all">Tất cả</a>
+                                                </li>
+                                                <li><a href="/admin/pages/add">Thêm Mới</a>
+                                                </li>
+                                            </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                     <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+
+                          <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-editor-mode-edit"></i> Bài Viết</a>
+                              <div class="collapsible-body" style="display: block;">
+                                          <ul>
+                                              <li><a href="/admin/posts/all">Tất cả</a>
+                                              </li>
+                                              <li><a href="/admin/posts/add">Viết Bài Mới</a>
+                                              </li>
+
+                                              <li><a href="/admin/posts/tags">Thêm Thẻ</a>
+                                              </li>
+
+                                          </ul>
+                              </div>
+                          </li>
+                        </ul>
+                    </li>
+
+                <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-image-image"></i> Phương Tiện</a>
+                                <div class="collapsible-body" style="">
+                                            <ul>
+                                                <li><a href="/admin/media/all">Thư Viện</a>
+                                                </li>
+                                                <li><a href="/admin/media/add">Thêm Mới</a>
+                                                </li>
+                                            </ul>
+                                </div>
+                            </li>
+                      </ul>
+                </li>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-shopping-basket"></i>Sản Phẩm</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/products-list">Danh Sách</a>
+                                </li>
+                                <li><a href="/admin/producer">Nhà Sản Xuất</a>
+                                </li>
+                                <li><a href="/admin/category">Danh Mục</a>
+                                </li>
+                                <li><a href="/admin/details">Thuộc Tính</a>
+                                </li>
+                                <li><a href="/admin/currency">Tiền Tệ</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i>Bán Hàng</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/admin/orders">Đơn Hàng</a>
+                                </li>
+                                <li><a href="/admin/ship">Giao Hàng</a>
+                                </li>
+                                <li><a href="/admin/customers">Khách Hàng</a>
+                                </li>
+                                <li><a href="/admin/voucher">Mã Giảm Giá</a>
+                                </li>
+                                <li><a href="/admin/send-mail">Gửi Mail</a>
+                                </li>
+                                <li><a href="/admin/sale">Chạy Khuyến Mại</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="bold"><a class="waves-effect waves-cyan"><i class="mdi-action-store"></i> Cửa Hàng</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+            </li>
+  
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-invert-colors"></i> Thiết Kế</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+                    </li>
+
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-extension"></i>Phần Mở Rộng</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/extensions/installed">Đã Cài</a>
+                                        </li>
+                                        <li><a href="/admin/extensions/new">Cài Mới</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-settings-applications"></i>Hệ Thống</a>
+                                <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/system/infos">Thông Tin</a>
+                                        </li>
+                                        <li><a href="/admin/system/setting">Cài Đặt</a>
+                                        </li>
+                                        <li><a href="/admin/system/cache">Cache</a>
+                                        </li>
+                                        <li><a href="/admin/system/warnings">Cảnh Báo</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="bold"><a href="/admin/reports" class="waves-effect waves-cyan"><i class="mdi-device-now-widgets"></i> Báo Cáo
+                    <span class="new badge"></span></a>
+                    </li>
+                   
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan" href="/admin/forms"><i class="mdi-editor-insert-comment"></i> Biểu Mẫu </a>
+                        <div class="collapsible-body" style="">
+                           
+                        </div>
+                    </li>
+                    
+
+                    
+                    
+                    <li class="bold"><a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-action-account-circle"></i> Thành Viên</a>
+                        <div class="collapsible-body" style="">
+                                    <ul>
+                                        <li><a href="/admin/users/all">Tất Cả</a>
+                                        </li>
+                                        <li><a href="/admin/users/add">Thêm Mới</a>
+                                        </li>
+                                        <li><a href="/admin/users/admin">Hồ Sơ Của Bạn</a>
+                                        </li>
+                                    </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-editor-insert-chart"></i> Biểu Đồ</a>
+                        <div class="collapsible-body" style="">
+                            
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li class="li-hover"><div class="divider"></div></li>
+            <li class="li-hover"><p class="ultra-small margin more-text">Thống Kê Nhanh</p></li>
+            
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-social-people"></i>Khách Hàng Online</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Đăng Nhập: </a>
+                                        </li>
+                                        <li><a href="#">Khách: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-action-credit-card"></i>Số Đơn Hàng</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-editor-attach-money"></i>Doanh Thu</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-social-person-add"></i>Khách Hàng Mới</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                    <li class="bold active"><a class="collapsible-header waves-effect waves-cyan active"><i class="mdi-communication-forum"></i>Đánh Giá Trong Ngày</a>
+                        <div class="collapsible-body" style="">
+                              <ul>
+                                        <li><a href="#">Hôm Nay: </a>
+                                        </li>
+                                        <li><a href="#">Tuần Này: </a>
+                                        </li>
+                                        
+                              </ul>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+                             
+            <li class="li-hover"><div class="divider"></div></li>
+            <li class="li-hover"><p class="ultra-small margin more-text">Biểu Đồ Doanh Thu</p></li>
+            <li class="li-hover">
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                           <div class="ct-chart ct-perfect-fourth"></div>  
+                           <br><br/>
+                    </div>
+                </div>
+            </li>
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 910px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 631px;"></div></div></ul>
+        <a href="/" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
+        </aside>
+      <!-- END LEFT SIDEBAR NAV-->
+
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- START CONTENT -->
+      <section id="content">
+        
+        <!--start container-->
+        <div class="container">
+
+            <div class="row">
+              <div class="col s12 m12 l12">
+                <div class="card-panel">
+                  <h4 class="header2">Sửa Bài Viết: <%= article.title %></h4>
+                  <div class="row">
+                    <form class="col s12" action="/admin/blog/edit" method="post" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <i class="mdi-content-text-format prefix"></i>
+                          <input type="hidden" name="author_id" value="<%= admin._id %>" />
+                          <input type="hidden" name="id" value="<%= article._id %>">
+                          <input id="product_name" type="text" name="title" value="<%= article.title %>"/>
+                          <label for="first_name">Tiêu Đề</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col s12">
+                            <i class="mdi-av-my-library-books prefix"></i>
+                              <label for="product_category">Danh Mục *</label>
+                               <select class="browser-default" id="crole" name="category">
+                                        <option value="">Chọn Danh Mục</option>
+                                        <% category.forEach(function(c){%>
+                                        <option value="<%= c.name %>"><%= c.name %></option>
+                                        
+                                        <%});%>
+                              </select>
+                                      <div class="input-field">
+                                          <div class="errorTxt6"></div>
+                                      </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <i class="mdi-communication-vpn-key prefix"></i>
+                          <input id="password3" type="text" name="keywords" placeholder="VD: dien thoai,may tinh bang,dong ho" value="<%= article.keywords %>" />
+                          <label for="text">Từ Khóa</label>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col s12 m12 l12">
+                              
+                                 <input id="file" class="dropify" data-allowed-file-extensions="jpg jpeg png gif" data-show-errors="true" data-max-file-size-preview="3M" type="file" name="file" data-default-file="<%= article.image %>"/>
+                             
+                            </div>
+                       </div>
+                       <div class="row">
+                                <blockquote>
+                                        <b>Nội Dung </b>
+                                </blockquote>
+                                <div class="col s12 m12 l12">
+                                        <textarea name="content" id="editor1" rows="10" cols="80">
+                                             <%= article.content %>
+                                        </textarea>
+                                </div>  
+                        </div>
+                        <br/>       
+
+                            <div class="row">
+
+                                  <div class="col s12 m12 l12">
+
+                                    <div class="row">
+                                      <div class="col s12">
+                                        <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
+                                          <li class="tab col s3"><a class="active" href="#test1">Khác</a>
+                                          </li>
+                                          <li class="tab col s3"><a href="#test2" class="">Định Dạng</a>
+                                          </li>
+                                          <li class="tab col s3"><a href="#test3" class="">Rich Snippet</a>
+                                          </li>
+                                          <li class="tab col s3"><a href="#test4" class="">Mô Tả Ngắn</a>
+                                          </li>
+                                        <div class="indicator" style="right: 904px; left: 0px;"></div><div class="indicator" style="right: 904px; left: 0px;"></div></ul>
+                                      </div>
+                                      <div class="col s12">
+                                        <div id="test1" class="col s12" style="display: block;">
+                                            
+                                             <div class="row">
+                                                <div class="input-field col s12">
+                                                  <i class="mdi-action-language prefix"></i>
+                                                  <input id="price" type="text" name="permalink" value="<%= article.permalink %>" />
+                                                  <label for="price">Đường Dẫn Tĩnh</label>
+                                                </div>
+                                              </div>
+
+                                              <div class="row">
+                                                <div class="input-field col s12">
+                                                  <i class="mdi-action-assessment prefix"></i>
+                                                  <input id="sale_price" type="text" name="view" value="<%= article.view %>" />
+                                                  <label for="price">Đặt Lượt View</label>
+                                                </div>
+                                              </div>
+
+                                               <div class="row">
+                                                <div class="input-field col s12">
+                                                  <i class="mdi-action-account-circle prefix"></i>
+                                                  <input id="sale_price" type="text" name="author_name" value="<%= article.author_name %>" />
+                                                  <label for="price">Tác Giả</label>
+                                                </div>
+                                              </div>
+                                        </div>
+                                          
+                                        <div id="test2" class="col s12" style="display: none;">
+                                            <div id="input-switches" class="section">
+                                                  <h4 class="header">Định Dạng Bài Viết</h4>
+                                                  <div class="row">
+                                                    <div class="col s12 m4 l3">
+                                                        <p></p>
+                                                    </div>
+                                                    <div class="col s12 m8 l9">
+                                                      <!-- Switch -->
+                                                      <div class="switch">
+                                                        
+                                                        <label>
+                                                          Hình Ảnh
+                                                          <input type="checkbox" name="format">
+                                                          <span class="lever"></span> Video
+                                                        </label>
+                                                      </div>
+                                                      
+                                                    </div>
+                                                  </div>
+                                                </div>
+
+                                             <div class="row">
+                                                <div class="input-field col s12">
+                                                  <i class="mdi-action-settings-ethernet prefix"></i>
+                                                  <input id="code" type="text" name="video" value="<%= article.video %>"/>
+                                                  <label for="code">Đường Dẫn Video</label>
+                                                </div>
+                                              </div>
+
+
+                                        </div>
+                                        <div id="test3" class="col s12" style="display: none;">
+                                                   <div class="row">
+                                                    <div class="input-field col s12">
+                                                      <i class="mdi-action-polymer prefix"></i>
+                                                      <input id="weight" type="text" name="rich_snippet" value="<%= article.rich_snippet %>"/>
+                                                      <label for="weight">Mã Code</label>
+                                                    </div>
+                                                  </div>
+                                                  <div class="row">
+                                                      <div class="col s12">
+                                                        <i class="mdi-action-payment prefix"></i>
+                                                          <label for="product_category">Nếu vẫn chưa tạo mã Rich Snippet thì nhấn vào link dưới để tạo mới?</label>
+                                                           <p><a href="/admin/rich-snippet">Tạo mã Rich Snippet</a></p>
+                                                      </div>
+                                                  </div>
+                                        </div>
+                                        <div id="test4" class="col s12" style="display: none;">
+                                                 <textarea name="short_description" id="editor1" rows="10" cols="80">
+                                                     <%= article.short_description %>
+                                                 </textarea>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+
+                            </div>
+
+                            <br>
+                            <hr>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <button class="btn cyan waves-effect waves-light right" type="submit">Hoàn Tất
+                                  <i class="mdi-content-send right"></i>
+                                </button>
+                              </div>
+                            </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          
+          <!-- Floating Action Button -->
+            <div class="fixed-action-btn" style="bottom: 50px; right: 19px;">
+                <a class="btn-floating btn-large">
+                  <i class="mdi-action-stars"></i>
+                </a>
+                <ul>
+                  <li><a href="/admin" class="btn-floating red"><i class="large mdi-communication-live-help"></i></a></li>
+                  <li><a href="/admin" class="btn-floating yellow darken-1"><i class="large mdi-device-now-widgets"></i></a></li>
+                  <li><a href="/admin" class="btn-floating green"><i class="large mdi-editor-insert-invitation"></i></a></li>
+                  <li><a href="/admin" class="btn-floating blue"><i class="large mdi-communication-email"></i></a></li>
+                </ul>
+            </div>
+            <!-- Floating Action Button -->
+        </div>
+        <!--end container-->
+      </section>
+      <!-- END CONTENT -->
+
+      
+
+    </div>
+    <!-- END WRAPPER -->
+
+  </div>
+  <!-- END MAIN -->
+
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START FOOTER -->
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+        <span>Copyright © 2017 <a class="grey-text text-lighten-4" href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">NIMKID</a> All rights reserved.</span>
+        <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">Hữu Thắng</a></span>
+        </div>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--prism
+    <script type="text/javascript" src="js/prism/prism.js"></script>-->
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!-- chartist -->
+    <script type="text/javascript" src="js/chartist.min.js"></script>   
+    <!-- masonry -->
+    <script src="js/masonry.pkgd.min.js"></script>
+    <!-- imagesloaded -->
+    <script src="js/imagesloaded.pkgd.min.js"></script>    
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.min.js"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="js/custom-script.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/js/dropify.min.js"></script>
+
+    <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+
+     <script type="text/javascript">
+      var data = {
+      
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sa', 'Su'],
+       
+        series: [
+          [5, 2, 4, 2, 0,6,15]
+        ]
+      };
+
+
+
+      new Chartist.Line('.ct-chart', data);
+    </script>
+    
+    <script type="text/javascript">
+        $('.dropify').dropify({
+              messages: {
+                  'default': 'Kéo Thả hoặc Click để Tải File',
+                  'replace': 'Kéo Thả hoặc Click để thay thế File',
+                  'remove':  'Xóa',
+                  'error':   'Lỗi rùi!.'
+              },
+              error: {
+                  'fileSize': 'Dung lượng File lớn hơn ({{ value }} cho phép).',
+                  'minWidth': 'Chiều rộng ảnh nhỏ hơn so với ({{ value }}}px yêu cầu).',
+                  'maxWidth': 'Chiều rộng ảnh lớn hơn so với ({{ value }}}px cho phép).',
+                  'minHeight': 'Chiều cao ảnh nhỏ hơn so với ({{ value }}}px yêu cầu).',
+                  'maxHeight': 'Chiều cao ảnh lớn hơn so với ({{ value }}px cho phép).',
+                  'imageFormat': 'Định dạng ảnh không hợp lệ. Chỉ cho phép :({{ value }}).'
+              }
+        });
+    </script>
+
+    <script>
+        CKEDITOR.replace( 'editor1',{
+            height: 500,
+            filebrowserUploadUrl: '/admin/uploader',
+            filebrowserImageBrowseUrl: '/admin/browser'
+            
+        });
+
+        CKEDITOR.replace( 'short_description',{
+            height: 300,
+            filebrowserUploadUrl: '/admin/uploader',
+            filebrowserImageBrowseUrl: '/admin/browser'
+            
+        });
+    </script>
+
+    <script type="text/javascript">
+               $('select[name="category"]').val("<%= article.category %>");
+
+        <% if(article.video != undefined){%>
+               $('input[name="format"]').prop('checked',true);
+        <%}%>
+    </script>
+
+
+    
+<div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div><div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); right: 0px;"></div></body></html>

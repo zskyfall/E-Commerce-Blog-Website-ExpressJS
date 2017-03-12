@@ -1,0 +1,22 @@
+{
+  "name": "webx",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cheerio": "^0.22.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "ejs": "~2.5.2",
+    "express": "~4.14.0",
+    "mongoose": "^4.8.6",
+    "morgan": "~1.7.0",
+    "multer": "^1.3.0",
+    "request": "^2.79.0",
+    "serve-favicon": "~2.3.0"
+  }
+}
