@@ -17,15 +17,15 @@ Website bán hàng tích hợp làm blog viết bằng ExpressJS
 <h3>Trang show Sản Phẩm/Bài Viết</h3>
 <img src="http://i.imgur.com/jOTI2mY.png">
 
+<h2>Toàn Bộ Router được viết trong File app.js<h2> <br>
+*** Website vẫn đang trong giai đoạn phát triển. Các chức năng đã hoàn thiện:<br>
+-Đăng Ký/Đăng Nhập<br>
+-Thêm Danh Mục/Sản Phẩm Mới<br>
+-Thêm Danh Mục/Bài Viết Mới<br>
 
-*** Website vẫn đang trong giai đoạn phát triển. Các chức năng đã hoàn thiện:
--Đăng Ký/Đăng Nhập
--Thêm Danh Mục/Sản Phẩm Mới
--Thêm Danh Mục/Bài Viết Mới
-
-***Các chức năng đang hoàn thiện:
--SEO Tools
--Rich Snippet Generator
--....
+***Các chức năng đang hoàn thiện:<br>
+-SEO Tools<br>
+-Rich Snippet Generator<br>
+-....<br>
 
 ***Theme sử dụng: Materialized
