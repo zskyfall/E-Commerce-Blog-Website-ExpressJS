@@ -1,5 +1,6 @@
 # E-Commerce-Blog-Website-ExpressJS
 Website bán hàng tích hợp làm blog viết bằng ExpressJS
+<h1>Trang Demo: <a href="#">đang cập nhật...</a></h1>
 <h1>Một số hình ảnh về website</h1>
 <br>
 <h3>Giao diện Trang Quản Trị</h3>
