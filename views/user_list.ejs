@@ -9,17 +9,7 @@
   <meta name="msapplication-tap-highlight" content="no">
   <meta name="description" content="My website ">
   <meta name="keywords" content="blank page,trang trống">
-  <title>Trang Chủ</title>
-
-  <!-- Favicons-->
-  <link rel="icon" href="http://demo.geekslabs.com/materialize/v3.1/images/favicon/favicon-32x32.png" sizes="32x32">
-  <!-- Favicons-->
-  <link rel="apple-touch-icon-precomposed" href="http://demo.geekslabs.com/materialize/v3.1/images/favicon/apple-touch-icon-152x152.png">
-  <!-- For iPhone -->
-  <meta name="msapplication-TileColor" content="#00bcd4">
-  <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
-  <!-- For Windows Phone -->
-
+  <title>Quản Lý Người Dùng</title>
 
   <!-- CORE CSS-->
   <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection">
@@ -32,8 +22,8 @@
   <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="css/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
-  
-  
+  <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/css/dropify.min.css">
 
 </head>
 
@@ -55,7 +45,7 @@
             <nav class="navbar-color">
                 <div class="nav-wrapper">
                     <ul class="left">                      
-                      <li><h1 class="logo-wrapper"><a href="http://demo.geekslabs.com/materialize/v3.1/index.html" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper"><a href="/admin" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                     <div class="header-search-wrapper hide-on-med-and-down">
                         <i class="mdi-action-search"></i>
@@ -278,6 +268,22 @@
                             
                         </div>
             </li>
+
+
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-cyan"><i class="mdi-action-find-in-page"></i>SEO</a>
+                        <div class="collapsible-body" style="">
+                            <ul>
+                                <li><a href="/seo-research-oponent">Nghiên Cứu Đối Thủ</a>
+                                </li>
+                               
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
   
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
@@ -449,204 +455,215 @@
         <!--start container-->
         <div class="container">
 
-            <div class="row">
-              <div class="col s12 m12 l12">
-                <div class="card-panel">
-                  <h4 class="header2">Thêm Bài Viết Mới</h4>
-                  <div class="row">
-                    <form class="col s12" action="/admin/blog/add" method="post" enctype="multipart/form-data">
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <i class="mdi-content-text-format prefix"></i>
-                          <input type="hidden" name="author_id" value="<%= admin._id %>" />
-
-                          <input id="product_name" type="text" name="title" />
-                          <label for="first_name">Tiêu Đề</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="col s12">
-                            <i class="mdi-av-my-library-books prefix"></i>
-                              <label for="product_category">Danh Mục *</label>
-                               <select class="browser-default" id="crole" name="category">
-                                        <option value="">Chọn Danh Mục</option>
-                                        <% category.forEach(function(c){%>
-                                        <option value="<%= c.name %>"><%= c.name %></option>
-                                        
-                                        <%});%>
-                              </select>
-                                      <div class="input-field">
-                                          <div class="errorTxt6"></div>
-                                      </div>
-                          </div>
-                      </div>
-                      <div class="row">
-                        <div class="input-field col s12">
-                          <i class="mdi-communication-vpn-key prefix"></i>
-                          <input id="password3" type="text" name="keywords" placeholder="VD: dien thoai,may tinh bang,dong ho"/>
-                          <label for="text">Từ Khóa</label>
-                        </div>
-                      </div>
-                      <div class="row">
-                          <div class="col s12 m12 l12">
-                              
-                                 <input id="file" class="dropify" data-allowed-file-extensions="jpg jpeg png gif" data-show-errors="true" data-max-file-size-preview="3M" type="file" name="file" />
-                             
-                            </div>
-                       </div>
-                       <div class="row">
-                                <blockquote>
-                                        <b>Nội Dung </b>
-                                </blockquote>
-                                <div class="col s12 m12 l12">
-                                        <textarea name="content" id="editor1" rows="10" cols="80">
-                                           
-                                        </textarea>
-                                </div>  
-                        </div>
-                        <br/>       
-
-                            <div class="row">
-
-                                  <div class="col s12 m12 l12">
-
-                                    <div class="row">
-                                      <div class="col s12">
-                                        <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
-                                          <li class="tab col s3"><a class="active" href="#test1">Khác</a>
-                                          </li>
-                                          <li class="tab col s3"><a href="#test2" class="">Định Dạng</a>
-                                          </li>
-                                          <li class="tab col s3"><a href="#test3" class="">Rich Snippet</a>
-                                          </li>
-                                          <li class="tab col s3"><a href="#test4" class="">Mô Tả Ngắn</a>
-                                          </li>
-                                        <div class="indicator" style="right: 904px; left: 0px;"></div><div class="indicator" style="right: 904px; left: 0px;"></div></ul>
-                                      </div>
-                                      <div class="col s12">
-                                        <div id="test1" class="col s12" style="display: block;">
-                                            
-                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                  <i class="mdi-action-language prefix"></i>
-                                                  <input id="price" type="text" name="permalink" />
-                                                  <label for="price">Đường Dẫn Tĩnh</label>
-                                                </div>
-                                              </div>
-
-                                              <div class="row">
-                                                <div class="input-field col s12">
-                                                  <i class="mdi-action-assessment prefix"></i>
-                                                  <input id="sale_price" type="text" name="view" />
-                                                  <label for="price">Đặt Lượt View</label>
-                                                </div>
-                                              </div>
-
-                                               <div class="row">
-                                                <div class="input-field col s12">
-                                                  <i class="mdi-action-account-circle prefix"></i>
-                                                  <input id="sale_price" type="text" name="author_name" value="<%= admin.name %>" />
-                                                  <label for="price">Tác Giả</label>
-                                                </div>
-                                              </div>
-                                        </div>
-                                          
-                                        <div id="test2" class="col s12" style="display: none;">
-                                            <div id="input-switches" class="section">
-                                                  <h4 class="header">Định Dạng Bài Viết</h4>
-                                                  <div class="row">
-                                                    <div class="col s12 m4 l3">
-                                                        <p></p>
-                                                    </div>
-                                                    <div class="col s12 m8 l9">
-                                                      <!-- Switch -->
-                                                      <div class="switch">
-                                                        
-                                                        <label>
-                                                          Hình Ảnh
-                                                          <input type="checkbox" name="format">
-                                                          <span class="lever"></span> Video
-                                                        </label>
-                                                      </div>
-                                                      
-                                                    </div>
-                                                  </div>
-                                                </div>
-
-                                             <div class="row">
-                                                <div class="input-field col s12">
-                                                  <i class="mdi-action-settings-ethernet prefix"></i>
-                                                  <input id="code" type="text" name="video" />
-                                                  <label for="code">Đường Dẫn Video</label>
-                                                </div>
-                                              </div>
-
-
-                                        </div>
-                                        <div id="test3" class="col s12" style="display: none;">
-                                                   <div class="row">
-                                                    <div class="input-field col s12">
-                                                      <i class="mdi-action-polymer prefix"></i>
-                                                      <input id="weight" type="text" name="rich_snippet" />
-                                                      <label for="weight">Mã Code</label>
-                                                    </div>
-                                                  </div>
-                                                  <div class="row">
-                                                      <div class="col s12">
-                                                        <i class="mdi-action-payment prefix"></i>
-                                                          <label for="product_category">Nếu vẫn chưa tạo mã Rich Snippet thì nhấn vào link dưới để tạo mới?</label>
-                                                           <p><a href="http://tools.seochat.com/tools/product-schema-generator/" rel="nofolow">Tạo mã Rich Snippet</a> hoặc <a href="https://hallanalysis.com/json-ld-generator/" rel="nofolow">Tạo mã Rich Snippet 2</a></p>
-                                                      </div>
-                                                  </div>
-                                        </div>
-                                        <div id="test4" class="col s12" style="display: none;">
-                                                 <textarea name="short_description" id="editor1" rows="10" cols="80">
-                                           
-                                                 </textarea>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                  </div>
-
-                            </div>
-
-                            <br>
-                            <hr>
-                            <div class="row">
-                              <div class="input-field col s12">
-                                <button class="btn cyan waves-effect waves-light right" type="submit">Hoàn Tất
-                                  <i class="mdi-content-send right"></i>
-                                </button>
-                              </div>
-                            </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+          <div class="row">
+              
+              <div class="col s12 m6 l6">
+                <p><a class="waves-effect waves-light btn modal-trigger light-blue" href="#modal1"><i class="mdi-content-add right"></i>Thêm Người Dùng</a>
+                </p>
               </div>
 
+
+              
+                 
+                <div id="modal1" class="modal">
+                  <div class="modal-content">
+                          
+                          <div class="card-panel">
+                              <h4 class="header2">Thêm Người Dùng</h4>
+                              <div class="row">
+                                <form class="col s12" action="/admin/user/add" method="post" enctype="multipart/form-data">
+                                  <div class="row">
+                                    <div class="input-field col s12">
+                                      <i class="mdi-content-gesture prefix"></i>
+                                      <input id="code" type="text" name="name">
+                                      <label for="code">Tên</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="input-field col s12">
+                                      <i class="mdi-content-content-paste prefix"></i>
+                                      <input id="name" type="text" name="email">
+                                      <label for="name">Email</label>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col s12 m12 l12">
+                                        <label>Ảnh Đại Diện</label>
+                                           <input id="file" class="dropify" data-allowed-file-extensions="jpg jpeg png gif" data-show-errors="true" data-max-file-size-preview="3M" type="file" name="file"/>
+                                      </div>
+                                  </div>
+                                 
+                                 <div class="row">
+                                        <div class="col s12 m8 l9">
+                                          <label>Giới Tính</label>
+                                          <select class="browser-default" name="gender">
+                                            <option value="" selected="true">Chọn</option>
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
+                                          
+                                            
+                                          </select>
+                                        </div>
+                                 </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                      <i class="mdi-editor-mode-edit prefix"></i>
+                                      <input id="description" type="text" name="year">
+                                      <label for="description">Năm Sinh</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+
+                                    <div class="row">
+                                      <div class="input-field col s12">
+                                        <button class="btn cyan waves-effect waves-light right" type="submit">Hoàn Tất
+                                          <i class="mdi-content-send right"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Đóng</a>
+                    
+                  </div>
+                </div>
+
+
+
+                  <div id="modal2" class="modal">
+                  <div class="modal-content">
+                          
+                          <div class="card-panel">
+                              <h4 class="header2">Sửa Thông Tin: <p id="user_name"></p></h4>
+                              <div class="row">
+                                <form class="col s12" action="/admin/user/edit" method="post" enctype="multipart/form-data">
+                                  <div class="row">
+                                 
+                                    <div class="input-field col s12">
+                                      <i class="mdi-content-gesture prefix"></i>
+                                      <input id="edit_id" type="hidden" name="edit_id" value="" />
+                                      <input id="code" type="text" name="edit_name"  placeholder="Nguyễn Hữu Thắng">
+                                      <label for="code">Tên</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="input-field col s12">
+                                      <i class="mdi-content-content-paste prefix"></i>
+                                      <input id="name" type="text" name="edit_email" placeholder="demo@gmail.com">
+                                      <label for="name">Email</label>
+                                    </div>
+                                  </div>
+
+                                  <div class="row">
+                                      <div class="col s12 m12 l12">
+                                        <label>Ảnh Đại Diện</label>
+                                           <input id="edit_avatar" class="dropify" data-allowed-file-extensions="jpg jpeg png gif" data-show-errors="true" data-max-file-size-preview="3M" type="file" name="file" data-default-file=""/>
+                                      </div>
+                                  </div>
+                                 
+                                 <div class="row">
+                                        <div class="col s12 m8 l9">
+                                          <label>Giới Tính</label>
+                                          <select class="browser-default" name="edit_gender">
+                                            <option value="" selected="true">Chọn</option>
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
+                                          
+                                            
+                                          </select>
+                                        </div>
+                                 </div>
+
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                      <i class="mdi-editor-mode-edit prefix"></i>
+                                      <input id="description" type="text" name="edit_year" placeholder="1996">
+                                      <label for="description">Năm Sinh</label>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+
+                                    <div class="row">
+                                      <div class="input-field col s12">
+                                        <button class="btn cyan waves-effect waves-light right" type="submit">Hoàn Tất
+                                          <i class="mdi-content-send right"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <a href="#" class="waves-effect waves-red btn-flat modal-action modal-close">Đóng</a>
+                    
+                  </div>
+                </div>
+
+
+
+              </div>
             </div>
+
+          <div class="row">
+                <div class="col s12 m12 l12">
+                  <table class="striped">
+                    <thead>
+                      <tr>
+                         <th data-field="name">Avatar</th>
+                        <th data-field="name">Tên</th>
+                        <th data-field="permalink">Email</th>
+                        <th data-field="parent">Provider</th>
+                        <th data-field="description">Giới Tính</th>
+                        <th data-field="edit">Sửa</th>
+                        <th data-field="remove">Xóa</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                        <% users.forEach(function(c){%>
+                      <tr>
+                        <td style="display:none;"><%= c._id %> </td>
+                        <td>
+                          <img src="<%= c.photo %>" alt="<%= c.name %> avatar" class="responsive-img" width="50px">
+                        </td>
+                        <td><%= c.name %> </td>
+                        <td><%= c.email %> </td>
+                        <td><%= c.provider %> </td>
+                        <td><%= c.gender %> </td>
+                        <td><a class="btn-floating waves-effect waves-light cyan edit btn modal-trigger" id="<%= c._id %>" href="#modal2"><i class="mdi-editor-mode-edit"></i></a></td>
+                        <td><a class="btn-floating waves-effect waves-light red remove" id="<%= c._id %>"><i class="mdi-content-clear"></i></a></td>
+                      </tr>
+                        <%});%>
+                        
+                        
+                      
+            
+                    </tbody>
+                  </table>
+                </div>
+          </div>
+
+          <div id="dialog2" title="Image Full Size View">
+              <img id="imagePreview" />
+          </div>
           
-          <!-- Floating Action Button -->
-            <div class="fixed-action-btn" style="bottom: 50px; right: 19px;">
-                <a class="btn-floating btn-large">
-                  <i class="mdi-action-stars"></i>
-                </a>
-                <ul>
-                  <li><a href="http://demo.geekslabs.com/materialize/v3.1/css-helpers.html" class="btn-floating red"><i class="large mdi-communication-live-help"></i></a></li>
-                  <li><a href="http://demo.geekslabs.com/materialize/v3.1/app-widget.html" class="btn-floating yellow darken-1"><i class="large mdi-device-now-widgets"></i></a></li>
-                  <li><a href="http://demo.geekslabs.com/materialize/v3.1/app-calendar.html" class="btn-floating green"><i class="large mdi-editor-insert-invitation"></i></a></li>
-                  <li><a href="http://demo.geekslabs.com/materialize/v3.1/app-email.html" class="btn-floating blue"><i class="large mdi-communication-email"></i></a></li>
-                </ul>
-            </div>
-            <!-- Floating Action Button -->
+          
         </div>
         <!--end container-->
       </section>
       <!-- END CONTENT -->
 
-      
+     
 
     </div>
     <!-- END WRAPPER -->
@@ -662,8 +679,8 @@
   <footer class="page-footer">
     <div class="footer-copyright">
       <div class="container">
-        <span>Copyright © 2017 <a class="grey-text text-lighten-4" href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">NIMKID</a> All rights reserved.</span>
-        <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="http://geekslabs.com/">Hữu Thắng</a></span>
+        <span>Copyright © 2017 <a class="grey-text text-lighten-4" href="https://www.facebook.com/nguyenhuuthang23" target="_blank">NIMKID</a> All rights reserved.</span>
+        <span class="right"> Design and Developed by <a class="grey-text text-lighten-4" href="https://www.facebook.com/nguyenhuuthang23">Hữu Thắng</a></span>
         </div>
     </div>
   </footer>
@@ -689,15 +706,14 @@
     <script src="js/masonry.pkgd.min.js"></script>
     <!-- imagesloaded -->
     <script src="js/imagesloaded.pkgd.min.js"></script>    
+
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.min.js"></script>
     <!--custom-script.js - Add your own theme custom JS-->
     <script type="text/javascript" src="js/custom-script.js"></script>
-    
+    <script type="text/javascript" src="js/sweetalert.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.1/js/dropify.min.js"></script>
-
-    <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
 
      <script type="text/javascript">
       var data = {
@@ -713,12 +729,85 @@
 
       new Chartist.Line('.ct-chart', data);
     </script>
-    
+
+
+    <script type="text/javascript">
+        
+         <% if(result != undefined && result == "ok"){ %> 
+ 
+            swal("Thành Công", "", "success");
+   
+        <%}%>
+
+        <% if(result != undefined && result == "fail"){ %> 
+ 
+            swal("Thất Bại", "Xảy ra lỗi! Thử lại?", "error");
+   
+        <%}%>
+
+    </script>
+
+
+    <script type="text/javascript">
+        
+        $(document).ready(function(){
+              $('a.edit').click(function(){
+                  var id = $(this).attr('id');
+                  var today = new Date();
+                      var y = today.getFullYear();
+
+                  $.ajax({
+                      url: '/user/info',
+                      type: 'post',
+                      data: {
+                        id: id
+                      },
+                      success: function(dt){
+                          $('p#user_name').text(dt.name);
+                          $('input#edit_id').val(dt._id);
+                          $('input[name="edit_email"]').val(dt.email);
+                          $('input[name="edit_name"]').val(dt.name);
+                          $('input[name="edit_year"]').val(y - dt.age_range.max - 1);
+                          $('select[name="edit_gender"]').val(dt.gender);
+                          $('input#edit_avatar').attr('data-default-file',dt.photo).change();
+                        
+                          
+                      }
+                  });
+              }); 
+
+              $('a.remove').click(function(){
+                  var id = $(this).attr('id');
+                  var par = $(this).parent().parent();
+                  $.ajax({
+                      url: '/user/remove',
+                      type: 'post',
+                      data: {
+                        id: id
+                      },
+                      success: function(dt){
+                          if(dt == "ok"){
+                            par.fadeOut();
+                            swal("Thành Công", "", "success");
+                            
+                          }
+                          else{
+                            swal("Thất Bại", "Xảy ra lỗi! Thử lại?", "error");
+                          }
+
+                      }
+                  });
+              });
+
+        });
+
+    </script>
+
     <script type="text/javascript">
         $('.dropify').dropify({
               messages: {
-                  'default': 'Kéo Thả hoặc Click để Tải File',
-                  'replace': 'Kéo Thả hoặc Click để thay thế File',
+                  'default': 'Kéo Thả hoặc Click để Tải Avatar',
+                  'replace': 'Kéo Thả hoặc Click để thay thế Avatar',
                   'remove':  'Xóa',
                   'error':   'Lỗi rùi!.'
               },
@@ -733,21 +822,6 @@
         });
     </script>
 
-    <script>
-        CKEDITOR.replace( 'editor1',{
-            height: 500,
-            filebrowserUploadUrl: '/admin/uploader',
-            filebrowserImageBrowseUrl: '/admin/browser'
-            
-        });
-
-        CKEDITOR.replace( 'short_description',{
-            height: 300,
-            filebrowserUploadUrl: '/admin/uploader',
-            filebrowserImageBrowseUrl: '/admin/browser'
-            
-        });
-    </script>
-
     
+
 <div class="hiddendiv common"></div><div class="drag-target" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div><div class="drag-target" style="touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); right: 0px;"></div></body></html>

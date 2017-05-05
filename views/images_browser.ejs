@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Duyệt Files</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
     <script>
         // Helper function to get parameters from the query string.
@@ -16,25 +17,77 @@
         function returnFileUrl(fileUrl) {
 
             var funcNum = getUrlParam( 'CKEditorFuncNum' );
-            
             window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
             window.close();
         }
     </script>
 </head>
 <body>
-    <% for(var i=0;i < images_list.length;i++){%>
-             <img src="/uploads/images/<%= images_list[i] %>" width="200px" height="200px" class="selected_image"/>
-    <%}%>
-    <button onclick="returnFileUrl()">Select File</button>
-</body>
+    <div class="fluid-container">
+        <% if(parent){%>
+        <div class="row">
+          <center><p> <a href="" id="parent">Thư mục cha</a> </p></center> 
+        </div>
+        <%}%>
+        <div class="row">
+                <% for(var i=0;i < files.length;i++){%>
+                    <div class="file col-md-2 col-lg-2 col-sm-2">
+                        <img src="<%= path %><%= files[i] %>" width="200px" height="200px" class="selected_image" path="<%= path %><%= files[i] %>/"></img>
+                        <p class="name"><b><%= files[i] %></b></p>
+                    </div>
+                <%}%>
+            <br>
+           
+        </div>
+    </div>
 
+     <center><i><b>Nhấp vào hình để chọn</b></i></center>
+</body>
+<style type="text/css">
+    img{
+        border: 3px solid grey;
+        cursor: pointer;
+    }
+</style>
 <script type="text/javascript">
 
     $(document).ready(function(){
             $('.selected_image').click(function(){
-                  returnFileUrl($(this).attr('src'));  
+                  if($(this).attr('src').includes(".jpg") == false && $(this).attr('src').includes(".png") == false && $(this).attr('src').includes(".jpeg") == false && $(this).attr('src').includes(".gif") == false || $(this).attr('src').includes('folder.png') == true){
+                       
+                       window.open("http://localhost:3000/admin/browser?next="+$(this).attr('path')+"&CKEditorFuncNum=<%= funcNum %>&CKEditor=editor1&langCode=vi", "_self");
+                    }
+                  else{
+                     
+                      returnFileUrl($(this).attr('src'));  
+                  }
+
+
+                  
             });
+
+            $('.selected_image').each(function(){
+                    if($(this).attr('src').includes(".jpg") == false && $(this).attr('src').includes(".png") == false && $(this).attr('src').includes(".jpeg") == false && $(this).attr('src').includes(".gif") == false){
+                        $(this).attr('src','/images/folder.png');
+                    }
+                    else{
+                        
+                    }
+            });
+
+            <% if(parent){%>
+                    var par = '<%= path %>';
+                    var arr = par.split('/');
+                    arr.pop();
+                    arr.pop();
+                    arr.splice(0,1);
+                    var str = "/";
+                    arr.forEach(function(a){
+                        str = str + a+ '/'; 
+                    });
+                    str = str.trim();
+                    $('a#parent').attr('href','http://localhost:3000/admin/browser?next='+str+"&CKEditorFuncNum=<%= funcNum %>&CKEditor=editor1&langCode=vi");
+            <%}%>
     });
 
 </script>

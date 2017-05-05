@@ -12,6 +12,15 @@ var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var flash = require('connect-flash');
+var passport = require('passport'), FacebookStrategy = require('passport-facebook').Strategy;
+
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 var db = require('./model/db.js');
 var adminSchema = db.Schema({
@@ -74,6 +83,45 @@ var articleSchema = db.Schema({
 	view: Number
 });
 
+var userSchema = db.Schema({
+	created_at: String,
+	updated_at: String,
+	facebookId: String,
+	name: String,
+	email: String,
+	birthday: String,
+	username: String,
+	provider: String,
+	gender: String,
+	photo: String,
+	facebookUrl: String,
+	age_range:{}
+
+});
+
+var orderSchema = db.Schema({
+	created_at_date: String,
+	created_at_time: String,
+	customer_name: String,
+	customer_type: String,
+	customer_phone: String,
+	customer_address: String,
+	customer_email: String,
+	message: String,
+	product_id: String,
+	product_name: String,
+	amount: Number,
+	total_price: String,
+	status: String,
+	coupon: String,
+	payment_method: String
+});
+
+var order = db.model('Order',orderSchema);
+
+
+var User = db.model('User',userSchema);
+
 
 var article = db.model('Article',articleSchema);
 
@@ -103,14 +151,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/admin', express.static(path.join(__dirname + '/public')));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Get Router
 app.get('/',function(req,res){
-		var pro = product.find({},function(err,pro){
+		if(req.cookies.remember){
+			var pro = product.find({},function(err,pro){
 				if(!err){
 						var cat = category.find({},function(er,cat){
 								if(!er){
-									res.render('product',{product:pro,category:cat});
+
+									res.render('product',{product:pro,category:cat,user: req.cookies.remember});
 								}
 								else{
 									res.send("Lỗi find category");
@@ -120,8 +172,59 @@ app.get('/',function(req,res){
 				else{
 					res.send("Lỗi find product");
 				}
-		});
+			});
+		}
+		else{
+			var pro = product.find({},function(err,pro){
+				if(!err){
+						var cat = category.find({},function(er,cat){
+								if(!er){
+
+									res.render('product',{product:pro,category:cat,user:req.user});
+								}
+								else{
+									res.send("Lỗi find category");
+								}
+						});
+				}
+				else{
+					res.send("Lỗi find product");
+				}
+			});
+		}
 });
+
+app.get('/home',function(req,res){
+		if(req.cookies.remember){
+			
+				
+						var cat = category.find({},function(er,cat){
+								if(!er){
+
+									res.render('index',{category:cat,user: req.cookies.remember});
+								}
+								else{
+									res.send("Lỗi find category");
+								}
+						});
+			
+		}
+		else{
+			
+				
+						var cat = category.find({},function(er,cat){
+								if(!er){
+
+									res.render('index',{category:cat,user:req.user});
+								}
+								else{
+									res.send("Lỗi find category");
+								}
+						});
+			
+		}
+});
+
 
 app.get('/register',function(req,res){
 	res.render('register');
@@ -131,9 +234,15 @@ app.get('/login',function(req,res){
 	res.render('login');
 });
 
-app.get('/admin/login',function(req,res){
-	res.render('login_admin');
+app.get('/logout', (req, res) => {
+
+  req.logout();
+  res.clearCookie('remember');
+  req.session.destroy();
+  res.redirect('/');
 });
+
+
 
 app.get('/forget-password',function(req,res){
 	res.render('forget_password');
@@ -148,7 +257,17 @@ app.get('/blank',function(req,res){
 });
 
 
+app.get('/auth/facebook',
+  passport.authenticate('facebook',{ scope: ['user_friends', 'manage_pages','email','publish_actions','public_profile','user_about_me']} ));
 
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    var time = 60 * 1000 * 60 * 24 * 7;
+	res.cookie('remember', req.user, { maxAge: time });
+    res.redirect('/');
+});
 
 
 
@@ -177,15 +296,67 @@ app.get('/test/create-admin',function(req,res){
 
 
 //ADMIN Get Router
+/*
+var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+			
+		}
+		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
+		}
+*/
+app.get('/admin/login',function(req,res){
+	var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+			res.send("<p>Xin vui lòng đăng xuất trước: <a href='/admin/logout'>Đăng Xuất</a></p>");
+		}
+		else{
+			res.render('login_admin');
+		}
+
+		
+});
+
+app.get('/admin/logout',function(req,res){
+		req.session.destroy();
+		res.clearCookie('remember_admin');
+		res.redirect('/admin/login');
+});
+
+
 app.get('/admin/seo-research-oponent',function(req,res){
-	res.render('seo_research_oponent');
+
+		var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+			res.render('seo_research_oponent');
+		}
+		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				res.render('seo_research_oponent');
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
+		}
+
+	
 });
 
 app.get('/admin',function(req,res){
-	
-	var ad = req.session.logged_admin;
+
+		var ad = req.cookies.remember_admin;
+
 		if(ad != '' && ad != undefined){
-				console.log(ad);
 				var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
 
@@ -197,15 +368,31 @@ app.get('/admin',function(req,res){
 				});
 		}
 		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							res.render('dashboard',{admin:u});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+			}
+			else{
 				res.redirect('/admin/login');
+			}	
 		}
+
 });
+
 
 app.get('/admin/rich-snippet',function(req,res){
 	
-	var ad = req.session.logged_admin;
+		var ad = req.cookies.remember_admin;
+
 		if(ad != '' && ad != undefined){
-				console.log(ad);
 				var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
 
@@ -217,7 +404,21 @@ app.get('/admin/rich-snippet',function(req,res){
 				});
 		}
 		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							res.render('create_rich',{admin:u});
+						}
+						else{
+							res.send("Loi");
+						}
+				});	
+			}
+			else{
 				res.redirect('/admin/login');
+			}	
 		}
 });
 
@@ -226,10 +427,10 @@ app.get('/admin/rich-snippet',function(req,res){
 
 app.get('/admin/blog-category',function(req,res){
 	
-	var ad = req.session.logged_admin;
+		var ad = req.cookies.remember_admin;
+
 		if(ad != '' && ad != undefined){
-				console.log(ad);
-				var u = administrator.findOne({email: ad},function(err,u){
+			var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
 
 							var cat = blog_category.find({},function(er,cat){
@@ -248,16 +449,39 @@ app.get('/admin/blog-category',function(req,res){
 				});
 		}
 		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = blog_category.find({},function(er,cat){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('blog_category',{admin:u,category:cat,result: rs });
+									}
+									else{
+										res.send("Lỗi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+			}
+			else{
 				res.redirect('/admin/login');
+			}	
 		}
+
 });
 
 app.get('/admin/category',function(req,res){
 	
-	var ad = req.session.logged_admin;
+		var ad = req.cookies.remember_admin;
+
 		if(ad != '' && ad != undefined){
-				console.log(ad);
-				var u = administrator.findOne({email: ad},function(err,u){
+			var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
 
 							var cat = category.find({},function(er,cat){
@@ -276,16 +500,139 @@ app.get('/admin/category',function(req,res){
 				});
 		}
 		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = category.find({},function(er,cat){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('category_list',{admin:u,category:cat,result: rs });
+									}
+									else{
+										res.send("Lỗi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+			}
+			else{
 				res.redirect('/admin/login');
+			}	
+		}	
+});
+
+app.get('/admin/order',function(req,res){
+	
+		var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+			var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = order.find({},function(er,cat){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('order_list',{admin:u,order:cat,result: rs });
+									}
+									else{
+										res.send("Lỗi find order");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
 		}
+		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = order.find({},function(er,cat){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('order_list',{admin:u,order:cat,result: rs });
+									}
+									else{
+										res.send("Lỗi find order");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
+		}	
+});
+
+
+app.get('/admin/user',function(req,res){
+	
+		var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+			var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var usr = User.find({},function(er,usr){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('user_list',{admin:u,users:usr,result: rs });
+									}
+									else{
+										res.send("Lỗi find user");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+		}
+		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+				var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var usr = User.find({},function(er,usr){
+									if(!er){
+										var rs = req.flash('result')[0];
+										res.render('user_list',{admin:u,users:usr,result: rs });
+									}
+									else{
+										res.send("Lỗi find user");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+				});
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
+		}	
 });
 
 app.get('/admin/product',function(req,res){
 		var action = req.query.action;
 		var id = req.query.id;
-		var ad = req.session.logged_admin;
-		if(ad != '' && ad != undefined){
+		var ad = req.cookies.remember_admin;
 
+		if(ad != '' && ad != undefined){
 				if(!action){
 					var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
@@ -360,8 +707,86 @@ app.get('/admin/product',function(req,res){
 				}
 		}
 		else{
-			res.redirect('/admin/login');
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+					if(!action){
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var pro = product.find({},function(er,pro){
+									if(!er){
+										var cat = category.find({},function(e,cat){
+												if(!e){
+														res.render('products_list',{admin:u,products:pro,category:cat,result: req.flash('result')});
+												}
+												else{
+													res.send("Lỗi find category");
+												}
+										});
+									}
+									else{
+										res.send("Lỗi find product");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else if(action == "add"){
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = category.find({},function(er,cat){
+									if(!er){
+										res.render('add_product',{admin:u,category:cat});
+									}
+									else{
+										res.send("Loi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else if(action == "edit" && id != undefined){
+					
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = category.find({},function(er,cat){
+									if(!er){
+										var pro = product.findOne({_id: id},function(e,pro){
+												if(!e){
+													res.render('edit_product',{admin:u,category:cat,product:pro});
+												}
+												else{
+													res.send("Lỗi find product");
+												}
+										});
+									}
+									else{
+										res.send("Loi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else{
+					res.redirect('/admin/login');
+				}
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
 		}
+		
 });
 
 
@@ -369,9 +794,9 @@ app.get('/admin/product',function(req,res){
 app.get('/admin/blog',function(req,res){
 		var action = req.query.action;
 		var id = req.query.id;
-		var ad = req.session.logged_admin;
-		if(ad != '' && ad != undefined){
+		var ad = req.cookies.remember_admin;
 
+		if(ad != '' && ad != undefined){
 				if(!action){
 					var u = administrator.findOne({email: ad},function(err,u){
 						if(!err){
@@ -446,28 +871,200 @@ app.get('/admin/blog',function(req,res){
 				}
 		}
 		else{
-			res.redirect('/admin/login');
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+					if(!action){
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var art = article.find({},function(er,art){
+									if(!er){
+										var cat = blog_category.find({},function(e,cat){
+												if(!e){
+														res.render('blog_list',{admin:u,articles:art,category:cat,result: req.flash('result')});
+												}
+												else{
+													res.send("Lỗi find category");
+												}
+										});
+									}
+									else{
+										res.send("Lỗi find product");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else if(action == "add"){
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = blog_category.find({},function(er,cat){
+									if(!er){
+										res.render('add_article',{admin:u,category:cat});
+									}
+									else{
+										res.send("Loi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else if(action == "edit" && id != undefined){
+					
+					var u = administrator.findOne({email: ad},function(err,u){
+						if(!err){
+
+							var cat = blog_category.find({},function(er,cat){
+									if(!er){
+										var pro = article.findOne({_id: id},function(e,pro){
+												if(!e){
+													res.render('edit_article',{admin:u,category:cat,article:pro});
+												}
+												else{
+													res.send("Lỗi find product");
+												}
+										});
+									}
+									else{
+										res.send("Loi find category");
+									}
+							});
+						}
+						else{
+							res.send("Loi");
+						}
+					});
+				}
+				else{
+					res.redirect('/admin/login');
+				}
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
 		}
+
 });
 
 
 
-app.get('/admin/browser', multipartMiddleware, function(req, res) {
+app.get('/admin/media', multipartMiddleware, function(req, res) {
 		var funcNum = req.query.CKEditorFuncNum;
+		var next = req.query.next;
 
-		var path = __dirname + '/public/uploads/images/';
-		
-		
-		fs.readdir(path, function(err,files){
+		if(next == undefined){
+			var p = __dirname + '/public/uploads/';
+			var current_path = '/uploads/';
+			fs.readdir(p, function(err,files){
 				if(!err){
-					res.render("images_browser",{funcNum:funcNum,images_list: files});
+					
+					res.render("images_browser",{funcNum:funcNum,path:current_path,files:files,parent: false});
+					
 				}
 				else{
 					console.log("loi");
 				}
-		});
+			});
+		}
+		else{
+			var p = __dirname + '/public'+ next;
+			var current_path = next;
+			fs.readdir(p, function(err,files){
+				if(!err){
+					console.log(files);
+					res.render("images_browser",{funcNum:funcNum,files: files,path: current_path,parent: true});
+				}
+				else{
+					
+				}
+			});
+		}
 
     	
+});
+
+app.get('/admin/browser',function(req,res){
+		var ad = req.cookies.remember_admin;
+
+		if(ad != '' && ad != undefined){
+				var funcNum = req.query.CKEditorFuncNum;
+				var next = req.query.next;
+
+				if(next == undefined){
+					var p = __dirname + '/public/uploads/images/blog/';
+					var current_path = '/uploads/images/blog/';
+					fs.readdir(p, function(err,files){
+						if(!err){
+							
+							res.render("images_browser",{funcNum:funcNum,path:current_path,files:files,parent: false});
+							
+						}
+						else{
+							console.log("loi");
+						}
+					});
+				}
+				else{
+					var funcNum = req.query.CKEditorFuncNum;
+					var p = __dirname + '/public'+ next;
+					var current_path = next;
+					fs.readdir(p, function(err,files){
+						if(!err){
+							console.log(files);
+							res.render("images_browser",{funcNum:funcNum,files: files,path: current_path,parent: true});
+						}
+						else{
+							
+						}
+					});
+				}
+		}
+		else{
+			ad = req.session.logged_admin;
+			if(ad != '' && ad != undefined){
+						var funcNum = req.query.CKEditorFuncNum;
+						var next = req.query.next;
+
+						if(next == undefined){
+							var p = __dirname + '/public/uploads/';
+							var current_path = '/uploads/';
+							fs.readdir(p, function(err,files){
+								if(!err){
+									
+									res.render("images_browser",{funcNum:funcNum,path:current_path,files:files,parent: false});
+									
+								}
+								else{
+									console.log("loi");
+								}
+							});
+						}
+						else{
+							var funcNum = req.query.CKEditorFuncNum;
+							var p = __dirname + '/public'+ next;
+							var current_path = next;
+							fs.readdir(p, function(err,files){
+								if(!err){
+									console.log(files);
+									res.render("images_browser",{funcNum:funcNum,files: files,path: current_path,parent: true});
+								}
+								else{
+									
+								}
+							});
+						}
+			}
+			else{
+				res.redirect('/admin/login');
+			}	
+		}
 });
 
 
@@ -478,10 +1075,27 @@ app.get('/admin/browser', multipartMiddleware, function(req, res) {
 
 
 //POST Router
+
+
+
 app.post('/category/info',function(req,res){
 	var id = req.body.id;
 	if(id != undefined){
 		var inf = category.findOne({_id: id},function(err,inf){
+				if(!err){
+					res.send(inf);
+				}
+				else{
+					res.send('fail');
+				}
+		});
+	}
+});
+
+app.post('/user/info',function(req,res){
+	var id = req.body.id;
+	if(id != undefined){
+		var inf = User.findOne({_id: id},function(err,inf){
 				if(!err){
 					res.send(inf);
 				}
@@ -617,6 +1231,85 @@ app.post('/admin/category/add',function(req,res){
 	}
 });
 
+app.post('/admin/user/add',upload.single('file'),function(req,res){
+	var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1; //January is 0!
+                        var yyyy = today.getFullYear();
+
+                        if(dd<10) {
+                            dd='0'+dd
+                        } 
+
+                        if(mm<10) {
+                            mm='0'+mm
+                        } 
+                        today = mm+'/'+dd+'/'+yyyy;
+	var db = req.body;
+		var name = db.name;
+		var email = db.email;
+		var photo = db.photo;
+		var provider = "auto";
+		var gender = db.gender;
+		var year = db.year;
+
+			year = parseInt(year);
+			year = yyyy - year;
+			var age_range = {
+				"min": year - 1,
+				"max": year + 1
+			};
+
+		var file = req.file;
+
+                  
+        var originalname = file.originalname;
+                      //  originalname = originalname.replace(".","_")+image_extension;
+        var destination = file.destination;
+
+        var filename = file.filename;
+        var image = '/uploads/images/users/'+originalname;
+
+        var pathUpload =__dirname+'/public/uploads/images/users/' + originalname;
+
+        
+
+                          fs.readFile(file.path, function(err, data) {
+
+                              if(!err) {
+                                  fs.writeFile(pathUpload, data, function() {
+                                      	var pro = new User({
+                                      		created_at: today,
+                                      		name: name,
+                                      		email: email,
+                                      		photo: image,
+                                      		provider: provider,
+                                      		gender: gender,
+                                      		age_range:age_range
+                                      	})
+
+                                      	pro.save(function(er){
+                                      		if(!er){
+                                      			req.flash('result','ok');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      		else{
+                                      			req.flash('result','fail');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      	});
+                                  });
+
+                                }
+                              else{
+                                  
+                                  res.send("Lỗi")
+                              }
+
+                		 });
+
+});
+
 app.post('/admin/blog-category/add',function(req,res){
 
 	var ad = req.session.logged_admin;
@@ -692,6 +1385,114 @@ app.post('/admin/category/edit',function(req,res){
 });
 
 
+app.post('/admin/user/edit',upload.single('file'),function(req,res){
+
+
+	
+
+	var today = new Date();
+                        var dd = today.getDate();
+                        var mm = today.getMonth()+1; //January is 0!
+                        var yyyy = today.getFullYear();
+
+                        if(dd<10) {
+                            dd='0'+dd
+                        } 
+
+                        if(mm<10) {
+                            mm='0'+mm
+                        } 
+                        today = mm+'/'+dd+'/'+yyyy;
+	var db = req.body;
+		var id = db.edit_id;
+		var name = db.edit_name;
+		var email = db.edit_email;
+		var provider = "auto";
+		var gender = db.edit_gender;
+		var year = db.edit_year;
+
+			year = parseInt(year);
+			year = yyyy - year;
+			var age_range = {
+				"min": year - 1,
+				"max": year + 1
+			};
+	var file = req.file;
+                  
+
+	if(file != undefined){
+			var originalname = file.originalname;
+                      //  originalname = originalname.replace(".","_")+image_extension;
+	        var destination = file.destination;
+
+	        var filename = file.filename;
+	        var image = '/uploads/images/users/'+originalname;
+
+	        var pathUpload =__dirname+'/public/uploads/images/users/' + originalname;
+
+        
+
+                          fs.readFile(file.path, function(err, data) {
+
+                              if(!err) {
+                                  fs.writeFile(pathUpload, data, function() {
+                                      	var pro = {
+                                      		updated_at: today,
+                                      		name: name,
+                                      		email: email,
+                                      		photo: image,
+                                      		provider: provider,
+                                      		gender: gender,
+                                      		age_range:age_range
+                                      	};
+
+                                      	User.update({_id: id},pro,function(er){
+                                      		if(!er){
+                                      			req.flash('result','ok');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      		else{
+                                      			req.flash('result','fail');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      	});
+                                  });
+
+                                }
+                              else{
+                                  
+                                  res.send("Lỗi")
+                              }
+
+                		 });
+	}
+	else{
+							 var pro = {
+                                      		updated_at: today,
+                                      		name: name,
+                                      		email: email,
+                                      		provider: provider,
+                                      		gender: gender,
+                                      		age_range:age_range
+                                      	};
+
+                                      	User.update({_id: id},pro,function(er){
+                                      		if(!er){
+                                      			req.flash('result','ok');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      		else{
+                                      			req.flash('result','fail');
+                                      			res.redirect('/admin/user');
+                                      		}
+                                      	});
+	}
+	
+
+});
+
+
+
 app.post('/admin/blog-category/edit',function(req,res){
 
 	var ad = req.session.logged_admin;
@@ -749,6 +1550,24 @@ app.post('/category/remove',function(req,res){
 	else{
 		res.redirect('/admin/login');
 	}
+});
+
+app.post('/user/remove',function(req,res){
+	
+
+	
+	var id = req.body.id;
+		User.remove({_id:id},function(err){
+			if(!err){
+					
+					res.send("ok");
+			}
+			else{
+						
+					res.send("fail");
+			}
+		});
+	
 });
 
 
@@ -1273,13 +2092,27 @@ app.post('/post/product/delete',function(req,res){
 app.post('/post/admin/login',function(req,res){
 	var email = req.body.email;
 	var password = req.body.password;
+	var remember = req.body.remember_me;
 
 	var c = administrator.count({email:email,password:password},function(err,c){
 			if(!err){
 					if(c == 1){
+
+						if(remember == "on"){
+							
+							var time = 60 * 1000 * 60 * 24 * 7;
+							res.cookie('remember_admin', email, { maxAge: time });
 							req.session.logged_admin = email;
 							
-							res.redirect('/admin/product');
+							res.redirect('/admin/');
+						}
+						else{
+							
+							req.session.logged_admin = email;
+							
+							res.redirect('/admin/');
+						}
+							
 					}
 					else{
 							res.redirect('/login/admin');
@@ -1349,6 +2182,48 @@ app.post('/admin/uploader', multipartMiddleware, function(req, res) {
 
 
 
+passport.use(new FacebookStrategy({
+    clientID: "388735088172613",
+    clientSecret: "92b99d4db12b8acd894764e96e1b1cc7",
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'photos', 'email','age_range','birthday','cover','name','gender','profileUrl']
+  },
+
+  function(accessToken, refreshToken, profile, done) {
+
+  		//console.log(profile);
+        //check user table for anyone with a facebook ID of profile.id
+        User.findOne({
+            'facebookId': profile.id 
+        }, function(err, user) {
+            if (err) {
+                return done(err);
+            }
+            //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+            if (!user) {
+                user = new User({
+                    name: profile.displayName,
+                    email: profile.emails[0].value,
+                    provider: 'facebook',
+                    gender: profile.gender,
+                    profileUrl: profile.profileUrl,
+                    photo: profile.photos[0].value,
+                    age_range: profile._json.age_range,
+                    //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
+                    facebookId: profile.id
+                });
+                user.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, user);
+                });
+            } else {
+                //found user. Return
+                return done(err, user);
+            }
+        });
+    }
+  
+));
 
 
 // catch 404 and forward to error handler

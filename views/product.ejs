@@ -7,8 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
-  <meta name="description" content="Materialize is a Material Design Admin Template,It&#39;s modern, responsive and based on Material Design by Google. ">
-  <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
   <title>Trang Chủ</title>
 
 
@@ -43,14 +43,80 @@
             <nav class="navbar-color">
                 <div class="nav-wrapper">
                     <ul class="left">                      
-                      <li><h1 class="logo-wrapper"><a href="/" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper"><a href="/" class="brand-logo darken-1"><img src="images/materialize-logo.png" alt="materialize logo"></a> <span class="logo-text">Logo</span></h1></li>
                     </ul>
                     <div class="header-search-wrapper hide-on-med-and-down">
                         <i class="mdi-action-search"></i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Tìm Kiếm">
+                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Tìm Kiếm Sản Phẩm">
                     </div>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="translation-dropdown"><img src="images/vietnam.png" alt="VN"></a><ul id="translation-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1661px; opacity: 1; display: none;">
+                        <% if(user){%>
+
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button dropdown-button" data-activates="notifications-dropdown"><img src="<%= user.photo %>" alt="<%= user.name %>" class="circle responsive-img valign profile-image center">
+                            </a>
+
+                            <ul id="notifications-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1609px; opacity: 1; display: none;">
+                                
+                                  <li class="divider"></li>
+                                  <li>
+                                    <a href="/"><i class="mdi-action-home"></i> Trang Cá Nhân</a>
+                                    
+                                  </li>
+                                  <li>
+                                    <a href="/"><i class="mdi-action-add-shopping-cart"></i> Giỏ Hàng</a>
+                                   
+                                  </li>
+                                  <li>
+                                    <a href="/"><i class="mdi-action-favorite-outline"></i> Danh Sách Yêu Thích</a>
+                                   
+                                  </li>
+                                  
+                                  <li>
+                                    <a href="/"><i class="mdi-action-bookmark-outline"></i> Đơn Hàng Của Tôi</a>
+                                    
+                                  </li>
+                                  <li>
+                                    <a href="/"><i class="mdi-action-settings"></i> Cài Đặt</a>
+                                    
+                                  </li>
+                                  
+                                  <li>
+                                    <a href="/logout"><i class="mdi-action-input"></i> Đăng Xuất</a>
+                                    
+                                  </li>
+                              </ul>
+                          </li> 
+ 
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="notifications-dr"><i class="mdi-social-notifications"><small class="notification-badge">5</small></i>
+                            </a>
+
+                            <ul id="notifications-dr" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1609px; opacity: 1; display: none;">
+                                  <li>
+                                    <span class="new badge">5</span>
+                                  <li class="divider"></li>
+                                  <li class="row">
+                                    <div class="col s3 m3 l3">
+                                        <img src="/images/avatar.jpg" class="responsive-img" alt="" />
+                                    </div>
+
+                                    <div class="col s9 m9 l9">
+                                        <p>Đã đặt hàng thành công</p>
+                                        <br>
+                                         <small><time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 giờ trước</time></small>
+                                    </div>
+                                    
+                                  </li>
+                                 
+                              </ul>
+                          </li> 
+                        <%}%>
+
+                        <% if(!user){%>
+                            <li><a href="/login" class="waves-effect waves-block waves-light translation-button">Đăng Nhập</a>
+                        <%}%>
+                        
+                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="translation-dropdown"><img src="images/vietnam.png" alt="VN"></a>
+                      <ul id="translation-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1661px; opacity: 1; display: none;">
                       <li>
                         <a href="/"><img src="images/vietnam.png" alt="Vietnamese">  <span class="language-select">Tiếng Việt</span></a>
                       </li>
@@ -71,38 +137,8 @@
                     </ul>
                         </li>
                         <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
-                        </li>
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown"><i class="mdi-social-notifications"><small class="notification-badge">5</small></i>
+                        </li>       
                         
-                        </a><ul id="notifications-dropdown" class="dropdown-content" style="white-space: nowrap; position: absolute; top: 64px; left: 1609px; opacity: 1; display: none;">
-                      <li>
-                        <h5>THÔNG BÁO <span class="new badge">5</span></h5>
-                      </li>
-                      <li class="divider"></li>
-                      <li>
-                        <a href="/"><i class="mdi-action-add-shopping-cart"></i> A new order has been placed!</a>
-                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">2 hours ago</time>
-                      </li>
-                      <li>
-                        <a href="/"><i class="mdi-action-stars"></i> Completed the task</a>
-                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">3 days ago</time>
-                      </li>
-                      <li>
-                        <a href="/"><i class="mdi-action-settings"></i> Settings updated</a>
-                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">4 days ago</time>
-                      </li>
-                      <li>
-                        <a href="/"><i class="mdi-editor-insert-invitation"></i> Director meeting started</a>
-                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">6 days ago</time>
-                      </li>
-                      <li>
-                        <a href="/"><i class="mdi-action-trending-up"></i> Generate monthly report</a>
-                        <time class="media-meta" datetime="2015-06-12T20:50:48+08:00">1 week ago</time>
-                      </li>
-                    </ul>
-                        </li>                        
-                        <li><a href="/" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse"><i class="mdi-communication-chat"></i></a>
-                        </li>
                     </ul>
                     <!-- translation-button -->
                     
@@ -128,24 +164,18 @@
             <li class="user-details cyan darken-2">
             <div class="row">
                 <div class="col col s4 m4 l4">
-                    <img src="images/avatar.jpg" alt="" class="circle responsive-img valign profile-image">
+                    <img src="<% if(user){%>
+                      <%= user.photo %>
+                    <%}%>" alt="" class="circle responsive-img valign profile-image">
                 </div>
                 <div class="col col s8 m8 l8">
                     
-                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="/" data-activates="profile-dropdown">Thắng<i class="mdi-navigation-arrow-drop-down right"></i></a><ul id="profile-dropdown" class="dropdown-content">
-                        <li><a href="/"><i class="mdi-action-face-unlock"></i> Hồ sơ</a>
-                        </li>
-                        <li><a href="/"><i class="mdi-action-settings"></i> Cài đặt</a>
-                        </li>
-                        <li><a href="/"><i class="mdi-communication-live-help"></i> Trợ giúp</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="/"><i class="mdi-action-lock-outline"></i> Xem</a>
-                        </li>
-                        <li><a href="/"><i class="mdi-hardware-keyboard-tab"></i> Đăng Xuất</a>
-                        </li>
-                    </ul>
-                    <p class="user-roal">Administrator</p>
+                    <a class="btn-flat waves-effect waves-light white-text profile-btn">
+                      <% if(user){%>
+                        <%= user.name %>
+                      <%}%>
+
+                    <p class="user-roal">Khách</p>
                 </div>
             </div>
             </li>
@@ -428,13 +458,12 @@
                     </div>
                 </div>
             </li>
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 910px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 631px;"></div></div></ul>
+        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 910px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 631px;"></div></div>
+      </ul>
+
         <a href="/" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only cyan"><i class="mdi-navigation-menu"></i></a>
         </aside>
       <!-- END LEFT SIDEBAR NAV-->
-
-      <!-- //////////////////////////////////////////////////////////////////////////// -->
-
       <!-- START CONTENT -->
  <section id="content">
         
@@ -443,7 +472,7 @@
             <!-- Search for small screen -->
             <div class="header-search-wrapper grey hide-on-large-only">
                 <i class="mdi-action-search active"></i>
-                <input name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize" type="text">
+                <input name="Search" class="header-search-input z-depth-2" placeholder="Tìm Kiếm Sản Phẩm" type="text">
             </div>
           <div class="container">
             <div class="row">
@@ -485,7 +514,7 @@
                                       <i class="mdi-social-share"></i>
                                     </a>
                                     <ul>
-                                    <li><a class="btn-floating red"><i class="large mdi-action-thumb-up"></i></a>
+                                    <li><a class="btn-floating red" href="https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u=http://nguyenhuuthang.com&display=popup&ref=plugin&src=share_button"><i class="large mdi-action-thumb-up"></i></a>
                                     </li>
                                     <li><a class="btn-floating yellow darken-1"><i class="large mdi-social-plus-one"></i></a>
                                     </li>
@@ -562,146 +591,6 @@
         <!--end container-->
       </section>
       <!-- END CONTENT -->
-
-      <!-- //////////////////////////////////////////////////////////////////////////// -->
-      <!-- START RIGHT SIDEBAR NAV-->
-      <aside id="right-sidebar-nav">
-        <ul id="chat-out" class="side-nav rightside-navigation right-aligned ps-container ps-active-y" style="width: 300px; right: -310px; height: 1034px;">
-            <li class="li-hover">
-            <a href="/" data-activates="chat-out" class="chat-close-collapse right"><i class="mdi-navigation-close"></i></a>
-            <div id="right-search" class="row">
-                <form class="col s12">
-                    <div class="input-field">
-                        <i class="mdi-action-search prefix"></i>
-                        <input id="icon_prefix" type="text" class="validate">
-                        <label for="icon_prefix">Search</label>
-                    </div>
-                </form>
-            </div>
-            </li>
-            <li class="li-hover">
-                <ul class="chat-collapsible" data-collapsible="expandable">
-                <li class="active">
-                    <div class="collapsible-header teal white-text active"><i class="mdi-social-whatshot"></i>Recent Activity</div>
-                    <div class="collapsible-body recent-activity" style="display: block;">
-                        <div class="recent-activity-list chat-out-list row">
-                            <div class="col s3 recent-activity-list-icon"><i class="mdi-action-add-shopping-cart"></i>
-                            </div>
-                            <div class="col s9 recent-activity-list-text">
-                                <a href="/">just now</a>
-                                <p>Jim Doe Purchased new equipments for zonal office.</p>
-                            </div>
-                        </div>
-                        <div class="recent-activity-list chat-out-list row">
-                            <div class="col s3 recent-activity-list-icon"><i class="mdi-device-airplanemode-on"></i>
-                            </div>
-                            <div class="col s9 recent-activity-list-text">
-                                <a href="/">Yesterday</a>
-                                <p>Your Next flight for USA will be on 15th August 2015.</p>
-                            </div>
-                        </div>
-                        <div class="recent-activity-list chat-out-list row">
-                            <div class="col s3 recent-activity-list-icon"><i class="mdi-action-settings-voice"></i>
-                            </div>
-                            <div class="col s9 recent-activity-list-text">
-                                <a href="/">5 Days Ago</a>
-                                <p>Natalya Parker Send you a voice mail for next conference.</p>
-                            </div>
-                        </div>
-                        <div class="recent-activity-list chat-out-list row">
-                            <div class="col s3 recent-activity-list-icon"><i class="mdi-action-store"></i>
-                            </div>
-                            <div class="col s9 recent-activity-list-text">
-                                <a href="/">Last Week</a>
-                                <p>Jessy Jay open a new store at S.G Road.</p>
-                            </div>
-                        </div>
-                        <div class="recent-activity-list chat-out-list row">
-                            <div class="col s3 recent-activity-list-icon"><i class="mdi-action-settings-voice"></i>
-                            </div>
-                            <div class="col s9 recent-activity-list-text">
-                                <a href="/">5 Days Ago</a>
-                                <p>Natalya Parker Send you a voice mail for next conference.</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="active">
-                    <div class="collapsible-header light-blue white-text active"><i class="mdi-editor-attach-money"></i>Sales Repoart</div>
-                    <div class="collapsible-body sales-repoart" style="display: block;">
-                        <div class="sales-repoart-list  chat-out-list row">
-                            <div class="col s8">Target Salse</div>
-                            <div class="col s4"><span id="sales-line-1"></span>
-                            </div>
-                        </div>
-                        <div class="sales-repoart-list chat-out-list row">
-                            <div class="col s8">Payment Due</div>
-                            <div class="col s4"><span id="sales-bar-1"></span>
-                            </div>
-                        </div>
-                        <div class="sales-repoart-list chat-out-list row">
-                            <div class="col s8">Total Delivery</div>
-                            <div class="col s4"><span id="sales-line-2"></span>
-                            </div>
-                        </div>
-                        <div class="sales-repoart-list chat-out-list row">
-                            <div class="col s8">Total Progress</div>
-                            <div class="col s4"><span id="sales-bar-2"></span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="collapsible-header red white-text"><i class="mdi-action-stars"></i>Favorite Associates</div>
-                    <div class="collapsible-body favorite-associates">
-                        <div class="favorite-associate-list chat-out-list row">
-                            <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
-                            </div>
-                            <div class="col s8">
-                                <p>Eileen Sideways</p>
-                                <p class="place">Los Angeles, CA</p>
-                            </div>
-                        </div>
-                        <div class="favorite-associate-list chat-out-list row">
-                            <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
-                            </div>
-                            <div class="col s8">
-                                <p>Zaham Sindil</p>
-                                <p class="place">San Francisco, CA</p>
-                            </div>
-                        </div>
-                        <div class="favorite-associate-list chat-out-list row">
-                            <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
-                            </div>
-                            <div class="col s8">
-                                <p>Renov Leongal</p>
-                                <p class="place">Cebu City, Philippines</p>
-                            </div>
-                        </div>
-                        <div class="favorite-associate-list chat-out-list row">
-                            <div class="col s4"><img src="images/avatar.jpg" alt="" class="circle responsive-img online-user valign profile-image">
-                            </div>
-                            <div class="col s8">
-                                <p>Weno Carasbong</p>
-                                <p>Tokyo, Japan</p>
-                            </div>
-                        </div>
-                        <div class="favorite-associate-list chat-out-list row">
-                            <div class="col s4"><img src="./index_files/avatar.jpg" alt="" class="circle responsive-img offline-user valign profile-image">
-                            </div>
-                            <div class="col s8">
-                                <p>Nusja Nawancali</p>
-                                <p class="place">Bangkok, Thailand</p>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                </ul>
-            </li>
-        <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 3px;"><div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; height: 974px; right: 3px;"><div class="ps-scrollbar-y" style="top: 0px; height: 917px;"></div></div></ul>
-      </aside>
-      <!-- LEFT RIGHT SIDEBAR NAV-->
-
     </div>
     <!-- END WRAPPER -->
 
